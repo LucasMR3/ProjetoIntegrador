@@ -14,30 +14,30 @@ public class User implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long cpf;
 	private String name;
 	private String email;
-	private String phone;
+	private String address;
 	private String password;
 
 	public User() {
 	}
 
-	public User(Long cpf, String name, String email, String phone, String password) {
+	public User(Long cpf, String name, String email, String address, String password) {
 		super();
-		this.id = cpf;
+		this.cpf = cpf;
 		this.name = name;
 		this.email = email;
-		this.phone = phone;
+		this.address = address;
 		this.password = password;
 	}
 
 	public Long getCpf() {
-		return id;
+		return cpf;
 	}
 
 	public void setCpf(Long cpf) {
-		this.id = cpf;
+		this.cpf = cpf;
 	}
 
 	public String getName() {
@@ -57,11 +57,11 @@ public class User implements Serializable{
 	}
 
 	public String getPhone() {
-		return phone;
+		return address;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public String getPassword() {
@@ -76,7 +76,7 @@ public class User implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
 		return result;
 	}
 
@@ -89,10 +89,10 @@ public class User implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		if (id == null) {
-			if (other.id != null)
+		if (cpf == null) {
+			if (other.cpf != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!cpf.equals(other.cpf))
 			return false;
 		return true;
 	}
