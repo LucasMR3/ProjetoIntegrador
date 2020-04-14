@@ -13,11 +13,11 @@ public class User implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	private String name;
-	private String email;
-	private String address;
-	private String password;
+	public Long id;
+	public String name;
+	public String email;
+	public String address;
+	public String password;
 
 	public User() {
 	}
