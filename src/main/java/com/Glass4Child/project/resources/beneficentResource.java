@@ -7,27 +7,28 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.Glass4Child.project.entities.User;
-import com.Glass4Child.project.services.UserService;
+import com.Glass4Child.project.entities.Beneficent;
+import com.Glass4Child.project.services.beneficentService;
+
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/users")
-public class UserResource {
+@RequestMapping(value = "/beneficent")
+public class beneficentResource {
 	
 	@Autowired
-	private UserService service;
+	private beneficentService service;
 	
 	@GetMapping
-	public ResponseEntity<List<User>> findAll(){
+	public ResponseEntity<List<Beneficent>> findAll(){
 
-		List<User> list = service.findAll();
+		List<Beneficent> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
-	
-	@GetMapping(value = "/{document}")
-	public ResponseEntity<User> findById(@PathVariable Long document){
-		User obj = service.findById(document);
+
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<Beneficent> findById(@PathVariable Long id){
+		Beneficent obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
 }
