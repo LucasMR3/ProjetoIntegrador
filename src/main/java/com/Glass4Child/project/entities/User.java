@@ -2,18 +2,19 @@ package com.Glass4Child.project.entities;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 
-@Entity
+//@Entity
+@MappedSuperclass
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Long id;
+	public Long document;
 	public String name;
 	public String email;
 	public String address;
@@ -22,21 +23,21 @@ public class User implements Serializable {
 	public User() {
 	}
 
-	public User(Long id, String name, String email, String address, String password) {
+	public User(Long document, String name, String email, String address, String password) {
 		super();
-		this.id = id;
+		this.document = document;
 		this.name = name;
 		this.email = email;
 		this.address = address;
 		this.password = password;
 	}
 
-	public Long getId() {
-		return id;
+	public Long getDocument() {
+		return document;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setDocument(Long id) {
+		this.document = id;
 	}
 
 	public String getName() {
@@ -75,7 +76,7 @@ public class User implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((document == null) ? 0 : document.hashCode());
 		return result;
 	}
 
@@ -88,10 +89,10 @@ public class User implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		if (id == null) {
-			if (other.id != null)
+		if (document == null) {
+			if (other.document != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!document.equals(other.document))
 			return false;
 		return true;
 	}
