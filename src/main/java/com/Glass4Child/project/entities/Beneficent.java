@@ -13,8 +13,6 @@ import org.springframework.data.annotation.Id;
 public class Beneficent extends User implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int donationLimit = 0;
     private int totalDonatedBeneficient = 0;
     private boolean everDonated = false;
