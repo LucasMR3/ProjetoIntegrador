@@ -1,35 +1,50 @@
-package com.Glass4Child.project.entities;
+spackage com.Glass4Child.project.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.MappedSuperclass;
-
+import javax.persistence.OneToOne;
+import com.Glass4Child.project.entities.address;;
 //@Entity
 @MappedSuperclass
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    private String document;
     private String name;
     private String email;
     private Long telephone;
     private String password;
-
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(unique = true)
+    private String document;
+    private address address;
     public User() {
     }
 
-    public User(String document, String name, String email, Long telephone, String password) {
-        super();
-        this.document = document;
-        this.name = name;
-        this.email = email;
-        this.telephone = telephone;
-        this.password = password;
-    }
 
-    public String getDocument() {
+
+
+
+	public User(String name, String email, Long telephone, String password, String document,
+			com.Glass4Child.project.entities.address address) {
+		super();
+		this.name = name;
+		this.email = email;
+		this.telephone = telephone;
+		this.password = password;
+		this.document = document;
+		this.address = address;
+	}
+
+
+
+
+
+	public String getDocument() {
         return document;
     }
 

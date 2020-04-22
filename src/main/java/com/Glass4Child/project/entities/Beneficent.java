@@ -17,28 +17,36 @@ public class Beneficent extends User implements Serializable {
     private int totalDonatedBeneficient = 0;
     private boolean everDonated = false;
     private String pseudonym;
-
-    public Beneficent() {
+  
+    public Beneficent(String name, String email, String password, long telephone, String document, int donationLimit, String pseudonym, address address) {
+    super(name, email, telephone, password, document, address);
+   
+		this.donationLimit = donationLimit;
+		
+		this.pseudonym = pseudonym;
+    
     }
 
-    public Beneficent(String document, String name, String email, Long telephone, String password, int donationLimit, String pseudonym) {
-        super(document, name, email, telephone, password);
-        this.donationLimit = donationLimit;
-        this.totalDonatedBeneficient = 0;
-        this.everDonated = false;
-        this.pseudonym = pseudonym;
-    }
+   
 
-    public Beneficent(String document, String name, String email, Long telephone, String password, int donationLimit, String pseudonym, int totalDonatedBeneficient) {
-        super(document, name, email, telephone, password);
-        this.donationLimit = donationLimit;
-        this.totalDonatedBeneficient = totalDonatedBeneficient;
-        this.everDonated = true;
-        this.pseudonym = pseudonym;
-    }
+   
 
 
-    public int getDonationLimit() {
+
+	public Beneficent() {
+		
+	}
+
+
+
+	
+
+
+
+
+
+
+	public int getDonationLimit() {
         return donationLimit;
     }
 
