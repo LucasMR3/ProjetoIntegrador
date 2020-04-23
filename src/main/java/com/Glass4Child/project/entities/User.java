@@ -1,27 +1,26 @@
-spackage com.Glass4Child.project.entities;
+package com.Glass4Child.project.entities;
+
+
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.OneToOne;
-import com.Glass4Child.project.entities.address;;
+import javax.persistence.*;
+
+import com.Glass4Child.project.entities.address;
 //@Entity
-@MappedSuperclass
+import javax.persistence.IdClass;
+
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
-
-    @Id
+   @OneToOne
+    private address address;
     private String name;
     private String email;
+
+    private String document;
     private Long telephone;
     private String password;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(unique = true)
-    private String document;
-    private address address;
+
     public User() {
     }
 

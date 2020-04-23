@@ -1,23 +1,39 @@
 package com.Glass4Child.project.entities;
 import java.io.Serializable;
 import java.util.Objects;
-
+import com.Glass4Child.project.entities.User;
 import javax.persistence.*;
-
-import org.springframework.data.annotation.Id;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class address implements  Serializable  {
 	private static final long serialVersionUID = 1L;
-	 private String cep;
+
+	private String document;
+	private String cep;
 	 private String city;
 	 private String neighborhood;
 	 private String reference;
-	 
-	 private int number;
-	    @OneToOne(mappedBy = "address")
-	    private Beneficent User;
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		address address = (address) o;
+		return document.equals(address.document);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(document);
+	}
+
+	private int number;
+
+
+
+
+
 	 public address() {
 		super();
 	}

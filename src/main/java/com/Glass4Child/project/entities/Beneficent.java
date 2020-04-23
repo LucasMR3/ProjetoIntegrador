@@ -3,16 +3,19 @@ package com.Glass4Child.project.entities;
 
 import java.io.Serializable;
 import java.util.Objects;
-
+import javax.persistence.Id;
 import javax.persistence.*;
 
-import org.springframework.data.annotation.Id;
+//import org.springframework.data.annotation.Id;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Beneficent extends User implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+
+
     private int donationLimit = 0;
     private int totalDonatedBeneficient = 0;
     private boolean everDonated = false;
