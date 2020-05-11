@@ -8,12 +8,15 @@ import java.io.Serializable;
 import java.util.Objects;
 
 
+
 @Entity
+@Table(name = "tb_ADDRESS")
 public class Address implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Column(name = "ID_ADDRESS")
     private Long id;
     //	private String postalAddressCode; //TO DO: IMPLEMENT CLASS postalAddressCode
     private int number;
@@ -25,15 +28,29 @@ public class Address implements Serializable {
     private String reference;
 
     @JsonIgnore
-    @OneToOne
-    @JoinColumn(name = "beneficent")
+    @OneToOne(mappedBy = "address")
     private Beneficent beneficent;
+//    private User user; //user as FK
+//
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
+    public Beneficent getBeneficent() {
+        return beneficent;
+    }
 
+    public void setBeneficent(Beneficent beneficent) {
+        this.beneficent = beneficent;
+    }
 
     public Address() {
     }
 
-    public Address(int number, String complement, String state, String city, String neighborhood, String reference, String streetAddress, Beneficent beneficent) {
+    public Address(int number, String complement, String state, String city, String neighborhood, String reference, String streetAddress) {
         this.number = number;
         this.complement = complement;
         this.state = state;
@@ -41,19 +58,10 @@ public class Address implements Serializable {
         this.neighborhood = neighborhood;
         this.reference = reference;
         this.streetAddress = streetAddress;
-        this.beneficent = beneficent;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Beneficent getBeneficent() {
-        return beneficent;
-    }
-
-    public void setBeneficent(Beneficent beneficent) {
-        this.beneficent = beneficent;
     }
 
     public Long getId() {

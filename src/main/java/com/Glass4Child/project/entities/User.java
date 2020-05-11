@@ -1,35 +1,32 @@
 package com.Glass4Child.project.entities;
 
 
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
 
+//@Entity
 @MappedSuperclass
-public class User implements Serializable {
+public abstract class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     private String document;
     private String name;
-    private String email;
     private Long telephone;
-    private String password;
-    private String cep;
+
+//    @OneToOne
+//    protected Address address;
 
     public User() {
     }
 
-    public User(String name, String email, Long telephone, String password, String document, String cep) {
+    public User(String name, Long telephone, String document) {
         super();
         this.name = name;
-        this.email = email;
         this.telephone = telephone;
-        this.password = password;
         this.document = document;
-        this.cep = cep;
     }
 
     public String getDocument() {
@@ -40,20 +37,20 @@ public class User implements Serializable {
         this.document = document;
     }
 
+//    public Address getAddress() {
+//        return address;
+//    }
+//
+//    public void setAddress(Address address) {
+//        this.address = address;
+//    }
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public Long getTelephone() {
@@ -64,28 +61,18 @@ public class User implements Serializable {
         this.telephone = telephone;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
         return Objects.equals(name, user.name) &&
-                Objects.equals(email, user.email) &&
                 Objects.equals(document, user.document) &&
-                Objects.equals(telephone, user.telephone) &&
-                Objects.equals(password, user.password);
+                Objects.equals(telephone, user.telephone);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, email, document, telephone, password);
+        return Objects.hash(name, document, telephone);
     }
 }
