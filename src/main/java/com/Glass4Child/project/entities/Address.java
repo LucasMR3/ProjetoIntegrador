@@ -8,14 +8,16 @@ import java.io.Serializable;
 import java.util.Objects;
 
 
+
 @Entity
+@Table(name = "tb_ADDRESS")
 public class Address implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 //    @Column(name = "ID_ADDRESS")
-    private Long idAddress;
+    private Long id;
     //	private String postalAddressCode; //TO DO: IMPLEMENT CLASS postalAddressCode
     private int number;
     private String streetAddress;
@@ -28,7 +30,15 @@ public class Address implements Serializable {
     @JsonIgnore
     @OneToOne(mappedBy = "address")
     private Beneficent beneficent;
-
+//    private User user;
+//
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
     public Beneficent getBeneficent() {
         return beneficent;
     }
@@ -50,12 +60,12 @@ public class Address implements Serializable {
         this.streetAddress = streetAddress;
     }
 
-    public void setIdAddress(Long id) {
-        this.idAddress = id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Long getIdAddress() {
-        return idAddress;
+    public Long getId() {
+        return id;
     }
 
     public int getNumber() {
@@ -120,7 +130,7 @@ public class Address implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         Address address = (Address) o;
         return getNumber() == address.getNumber() &&
-                getIdAddress().equals(address.getIdAddress()) &&
+                getId().equals(address.getId()) &&
                 streetAddress.equals(address.streetAddress) &&
                 Objects.equals(getComplement(), address.getComplement()) &&
                 getState().equals(address.getState()) &&
@@ -131,6 +141,6 @@ public class Address implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getIdAddress(), getNumber(), streetAddress, getComplement(), getState(), getCity(), getNeighborhood(), getReference());
+        return Objects.hash(getId(), getNumber(), streetAddress, getComplement(), getState(), getCity(), getNeighborhood(), getReference());
     }
 }
