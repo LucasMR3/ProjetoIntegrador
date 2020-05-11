@@ -1,42 +1,50 @@
-
 package com.Glass4Child.project.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.OneToOne;
 import java.io.Serializable;
 import java.util.Objects;
-
-import javax.persistence.*;
-
-import org.springframework.data.annotation.Id;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Beneficent extends User implements Serializable {
-
     private static final long serialVersionUID = 1L;
     private int donationLimit = 0;
-    private int totalDonatedBeneficient = 0;
+    private int totalDonatedBeneficent = 0;
     private boolean everDonated = false;
     private String pseudonym;
 
     public Beneficent() {
     }
 
-    public Beneficent(String document, String name, String email, Long telephone, String password, int donationLimit, String pseudonym) {
-        super(document, name, email, telephone, password);
+    public Beneficent(String name, String email, Long telephone, String password, String document, int donationLimit, int totalDonatedBeneficent, String pseudonym, String cep) {
+        super(name, email, telephone, password, document, cep);
         this.donationLimit = donationLimit;
-        this.totalDonatedBeneficient = 0;
-        this.everDonated = false;
-        this.pseudonym = pseudonym;
-    }
-
-    public Beneficent(String document, String name, String email, Long telephone, String password, int donationLimit, String pseudonym, int totalDonatedBeneficient) {
-        super(document, name, email, telephone, password);
-        this.donationLimit = donationLimit;
-        this.totalDonatedBeneficient = totalDonatedBeneficient;
+        this.totalDonatedBeneficent = totalDonatedBeneficent;
         this.everDonated = true;
         this.pseudonym = pseudonym;
     }
 
+    public Beneficent(String name, String email, Long telephone, String password, String document, int donationLimit, String pseudonym, String cep) {
+        super(name, email, telephone, password, document, cep);
+        this.donationLimit = donationLimit;
+        this.totalDonatedBeneficent = 0;
+        this.everDonated = false;
+        this.pseudonym = pseudonym;
+    }
+
+    @OneToOne(mappedBy = ("beneficent"))
+    private Address address;
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 
     public int getDonationLimit() {
         return donationLimit;
@@ -46,12 +54,12 @@ public class Beneficent extends User implements Serializable {
         this.donationLimit = DonationLimit;
     }
 
-    public int getTotalDonatedBeneficient() {
-        return totalDonatedBeneficient;
+    public int getTotalDonatedBeneficent() {
+        return totalDonatedBeneficent;
     }
 
-    public void setTotalDonatedBeneficient(int totalDonatedBeneficient) {
-        this.totalDonatedBeneficient = totalDonatedBeneficient;
+    public void setTotalDonatedBeneficent(int totalDonatedBeneficent) {
+        this.totalDonatedBeneficent = totalDonatedBeneficent;
     }
 
     public String getPseudonym() {
@@ -74,7 +82,7 @@ public class Beneficent extends User implements Serializable {
         if (this.donationLimit > value) {
             this.donationLimit = value;
         }
-        this.totalDonatedBeneficient = value + this.totalDonatedBeneficient;
+        this.totalDonatedBeneficent = value + this.totalDonatedBeneficent;
     }
 
     @Override
@@ -84,12 +92,12 @@ public class Beneficent extends User implements Serializable {
         if (!super.equals(o)) return false;
         Beneficent that = (Beneficent) o;
         return donationLimit == that.donationLimit &&
-                totalDonatedBeneficient == that.totalDonatedBeneficient &&
+                totalDonatedBeneficent == that.totalDonatedBeneficent &&
                 everDonated == that.everDonated;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), donationLimit, totalDonatedBeneficient, everDonated);
+        return Objects.hash(super.hashCode(), donationLimit, totalDonatedBeneficent, everDonated);
     }
 }

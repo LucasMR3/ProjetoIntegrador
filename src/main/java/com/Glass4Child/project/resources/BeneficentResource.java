@@ -8,21 +8,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Glass4Child.project.entities.Beneficent;
-import com.Glass4Child.project.services.beneficentService;
+import com.Glass4Child.project.services.BeneficentService;
 
-import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
 @RequestMapping(value = "/beneficent")
-public class beneficentResource {
+public class BeneficentResource {
 
     @Autowired
-    private beneficentService service;
+    private BeneficentService service;
 
     @GetMapping
     public ResponseEntity<List<Beneficent>> findAll() {
-
         List<Beneficent> list = service.findAll();
         return ResponseEntity.ok().body(list);
     }
