@@ -19,8 +19,8 @@ public class beneficentService {
         return repository.findAll();
     }
 
-    public Beneficent findById(Long id) {
-        Optional<Beneficent> obj = repository.findById(id);
+    public Beneficent findByDocument(String document) {
+        Optional<Beneficent> obj = repository.findByDocument(document);
         return obj.get();
     }
 }
