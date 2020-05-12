@@ -30,7 +30,19 @@ public class Address implements Serializable {
     @JsonIgnore
     @OneToOne(mappedBy = "address")
     private Beneficent beneficent;
-//    private User user;
+
+    public Benefited getBenefited() {
+        return benefited;
+    }
+
+    public void setBenefited(Benefited benefited) {
+        this.benefited = benefited;
+    }
+
+    @JsonIgnore
+    @OneToOne(mappedBy = "address")
+    private Benefited benefited;
+//    private User user; //user as FK
 //
 //    public User getUser() {
 //        return user;
