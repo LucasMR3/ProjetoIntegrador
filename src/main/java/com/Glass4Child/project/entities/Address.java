@@ -42,6 +42,7 @@ public class Address implements Serializable {
     @JsonIgnore
     @OneToOne(mappedBy = "address")
     private Benefited benefited;
+
 //    private User user; //user as FK
 //
 //    public User getUser() {
