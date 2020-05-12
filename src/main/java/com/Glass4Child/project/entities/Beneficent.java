@@ -14,16 +14,16 @@ public class Beneficent extends User implements Serializable {
 //    @Getter
 //    @Setter
 
-    private int donationLimit = 0;
-    private int totalDonated = 0;
-    private boolean everDonated = false;
+    private Integer donationLimit = 0;
+    private Integer totalDonated = 0;
+    private Boolean everDonated = false;
     private String pseudonym;
     private Instant bornDate;
 
     public Beneficent() {
     }
 
-    public Beneficent(String name, Long telephone, String document, int donationLimit, int totalDonatedBeneficent, String pseudonym, Instant bornDate, Address address) {
+    public Beneficent(String name, Long telephone, String document, Integer donationLimit, Integer totalDonatedBeneficent, String pseudonym, Instant bornDate, Address address) {
         super(name, telephone, document);
         this.donationLimit = donationLimit;
         this.totalDonated = totalDonatedBeneficent;
@@ -33,7 +33,7 @@ public class Beneficent extends User implements Serializable {
         this.address = address;
     }
 
-    public Beneficent(String name, Long telephone, String document, int donationLimit, String pseudonym, Instant bornDate, Address address) {
+    public Beneficent(String name, Long telephone, String document, Integer donationLimit, String pseudonym, Instant bornDate, Address address) {
         super(name, telephone, document);
         this.donationLimit = donationLimit;
         this.totalDonated = 0;
@@ -54,7 +54,7 @@ public class Beneficent extends User implements Serializable {
         this.address = address;
     }
 
-    public int getDonationLimit() {
+    public Integer getDonationLimit() {
         return donationLimit;
     }
 
@@ -62,7 +62,7 @@ public class Beneficent extends User implements Serializable {
         this.donationLimit = DonationLimit;
     }
 
-    public int getTotalDonated() {
+    public Integer getTotalDonated() {
         return totalDonated;
     }
 
@@ -86,11 +86,11 @@ public class Beneficent extends User implements Serializable {
         this.pseudonym = pseudonym;
     }
 
-    public boolean isEverDonated() {
+    public Boolean isEverDonated() {
         return everDonated;
     }
 
-    public void setEverDonated(boolean EverDonated) {
+    public void setEverDonated(Boolean EverDonated) {
         this.everDonated = EverDonated;
     }
 
