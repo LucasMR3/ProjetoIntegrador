@@ -1,12 +1,9 @@
 package com.Glass4Child.project.entities;
 
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-
-//@Entity
 @MappedSuperclass
 public abstract class User implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -16,17 +13,18 @@ public abstract class User implements Serializable {
     private String name;
     private Long telephone;
 
-//    @OneToOne
-//    protected Address address;
+    @OneToOne
+    protected Address address;
 
     public User() {
     }
 
-    public User(String name, Long telephone, String document) {
+    public User(String name, Long telephone, String document, Address address) {
         super();
         this.name = name;
         this.telephone = telephone;
         this.document = document;
+        this.address = address;
     }
 
     public String getDocument() {
@@ -37,13 +35,13 @@ public abstract class User implements Serializable {
         this.document = document;
     }
 
-//    public Address getAddress() {
-//        return address;
-//    }
-//
-//    public void setAddress(Address address) {
-//        this.address = address;
-//    }
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 
     public String getName() {
         return name;
@@ -61,7 +59,6 @@ public abstract class User implements Serializable {
         this.telephone = telephone;
     }
 
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -71,7 +68,6 @@ public abstract class User implements Serializable {
                 Objects.equals(telephone, user.telephone);
     }
 
-    @Override
     public int hashCode() {
         return Objects.hash(name, document, telephone);
     }

@@ -1,22 +1,18 @@
 package com.Glass4Child.project.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
-import javax.persistence.OneToOne;
 import java.io.Serializable;
 import java.util.Objects;
 
 
-
 @Entity
-@Table(name = "tb_ADDRESS")
+//@Table(name = "tb_ADDRESS")
 public class Address implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Column(name = "ID_ADDRESS")
+    //  @Column(name = "ID_ADDRESS")
     private Long id;
     //	private String postalAddressCode; //TO DO: IMPLEMENT CLASS postalAddressCode
     private int number;
@@ -26,39 +22,6 @@ public class Address implements Serializable {
     private String city;
     private String neighborhood;
     private String reference;
-
-    @JsonIgnore
-    @OneToOne(mappedBy = "address")
-    private Beneficent beneficent;
-
-    public Benefited getBenefited() {
-        return benefited;
-    }
-
-    public void setBenefited(Benefited benefited) {
-        this.benefited = benefited;
-    }
-
-    @JsonIgnore
-    @OneToOne(mappedBy = "address")
-    private Benefited benefited;
-
-//    private User user; //user as FK
-//
-//    public User getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
-    public Beneficent getBeneficent() {
-        return beneficent;
-    }
-
-    public void setBeneficent(Beneficent beneficent) {
-        this.beneficent = beneficent;
-    }
 
     public Address() {
     }

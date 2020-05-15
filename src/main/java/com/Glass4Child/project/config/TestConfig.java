@@ -11,8 +11,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 
 @Configuration
 @Profile("test")
@@ -27,16 +30,18 @@ public class TestConfig implements CommandLineRunner {
 
     public void run(String... args) throws Exception {
 
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
         Address ad1 = new Address(5859, "Residencial Masculino", "SP", "Sao Paulo", "Capão Redondo", "UNASP", "Estrada de Itapecerica");
         Address ad2 = new Address(1349, null, "SP", "Sao Paulo", "Berrini", "Praça no inicio da Berrini", "Rua Arizona");
         Address ad3 = new Address(1520, null, "SP", "Sao Paulo", "Berrini", "Sem referências", "Av Berrini");
         addressRepository.saveAll(Arrays.asList(ad1, ad2, ad3));
 
-        Beneficent beneficent1 = new Beneficent("Thales Oliveira",  (long) 119999,  "12345678", 300, "T-Thalles", Instant.parse("1992-05-11T17:57:35.000Z"), ad1);
-        Beneficent beneficent2 = new Beneficent("Thauã Oliveira", (long) 219999, "123456789", 500, 500,  "Sr-Thauã", Instant.parse("1990-01-01T12:10:00.000Z"),ad2);
+        Beneficent beneficent1 = new Beneficent("Thales Oliveira",  (long) 119999,  "12345678", 300, "T-Thalles", formatter.parse("1985-05-05"), ad1);
+        Beneficent beneficent2 = new Beneficent("Thauã Oliveira", (long) 219999, "123456789", 500, 500,  "Sr-Thauã", formatter.parse("1985-05-05"),ad2);
         beneficentRepository.saveAll(Arrays.asList(beneficent1, beneficent2));
 
-        Benefited benefited1 =  new Benefited("Joao Alves", (long)11921921, "394821911", 2, 3, "2020211", Instant.parse("1987-03-14T00:00:00.000Z"), ad3);
+        Benefited benefited1 =  new Benefited("Joao Alves", (long)11921921, "394821911", 2, 3, "2020211", formatter.parse("1985-05-05"), ad3);
         benefitedRepository.saveAll(Arrays.asList(benefited1));
     }
 }

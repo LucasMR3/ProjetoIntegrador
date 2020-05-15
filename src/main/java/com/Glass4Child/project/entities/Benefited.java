@@ -1,34 +1,35 @@
 package com.Glass4Child.project.entities;
 
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 import java.io.Serializable;
-import java.time.Instant;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-@Table(name = "tb_BENEFITED")
+//@Table(name = "tb_BENEFITED")
 public class Benefited extends User implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Integer amountDependents;
     private Integer limitDependents;
-    private String NIS;
-    private Instant bornDate;
-
-    @OneToOne
-    private Address address;
+    private String nis;
+    private Date bornDate;
 
     public Benefited() {
     }
 
-    public Benefited(String name, Long telephone, String document, Integer amountDependents, Integer limitDependents, String NIS, Instant bornDate, Address address) {
-        super(name, telephone, document);
+    public Benefited(String name, Long telephone, String document, Integer amountDependents, Integer limitDependents, String nis, Date bornDate, Address address) {
+        super(name, telephone, document, address);
         this.bornDate = bornDate;
         this.amountDependents = amountDependents;
         this.limitDependents = limitDependents;
-        this.NIS = NIS;
+        this.nis = nis;
         this.address = address;
     }
 
@@ -48,28 +49,20 @@ public class Benefited extends User implements Serializable {
         this.limitDependents = limitDependents;
     }
 
-    public String getNIS() {
-        return NIS;
+    public String getNis() {
+        return nis;
     }
 
-    public void setNIS(String NIS) {
-        this.NIS = NIS;
+    public void setNis(String NIS) {
+        this.nis = NIS;
     }
 
-    public Instant getBornDate() {
+    public Date getBornDate() {
         return bornDate;
     }
 
-    public void setBornDate(Instant bornDate) {
+    public void setBornDate(Date bornDate) {
         this.bornDate = bornDate;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
     }
 
     @Override
@@ -80,12 +73,12 @@ public class Benefited extends User implements Serializable {
         Benefited benefited = (Benefited) o;
         return amountDependents.equals(benefited.amountDependents) &&
                 limitDependents.equals(benefited.limitDependents) &&
-                NIS.equals(benefited.NIS) &&
+                nis.equals(benefited.nis) &&
                 bornDate.equals(benefited.bornDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), amountDependents, limitDependents, NIS, bornDate);
+        return Objects.hash(super.hashCode(), amountDependents, limitDependents, nis, bornDate);
     }
 }
