@@ -12,6 +12,7 @@ public abstract class User implements Serializable {
     private String document;
     private String name;
     private Long telephone;
+    private boolean isActive;
 
     @OneToOne
     protected Address address;
@@ -25,6 +26,7 @@ public abstract class User implements Serializable {
         this.telephone = telephone;
         this.document = document;
         this.address = address;
+        isActive = true;
     }
 
     public String getDocument() {
@@ -59,16 +61,27 @@ public abstract class User implements Serializable {
         this.telephone = telephone;
     }
 
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(name, user.name) &&
-                Objects.equals(document, user.document) &&
-                Objects.equals(telephone, user.telephone);
+        return isActive() == user.isActive() &&
+                getDocument().equals(user.getDocument()) &&
+                getName().equals(user.getName()) &&
+                getTelephone().equals(user.getTelephone());
     }
 
+    @Override
     public int hashCode() {
-        return Objects.hash(name, document, telephone);
+        return Objects.hash(getDocument(), getName(), getTelephone(), isActive());
     }
 }
