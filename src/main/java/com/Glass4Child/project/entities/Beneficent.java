@@ -1,13 +1,16 @@
 package com.Glass4Child.project.entities;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 import java.io.Serializable;
-import java.time.Instant;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-@Table(name = "tb_BENEFICENT")
+//@Table(name = "tb_BENEFICENT")
 public class Beneficent extends User implements Serializable {
     private static final long serialVersionUID = 1L;
 //    @AllArgsConstructor
@@ -18,13 +21,13 @@ public class Beneficent extends User implements Serializable {
     private Integer totalDonated = 0;
     private Boolean everDonated = false;
     private String pseudonym;
-    private Instant bornDate;
+    private Date bornDate;
 
     public Beneficent() {
     }
 
-    public Beneficent(String name, Long telephone, String document, Integer donationLimit, Integer totalDonatedBeneficent, String pseudonym, Instant bornDate, Address address) {
-        super(name, telephone, document);
+    public Beneficent(String name, Long telephone, String document, Integer donationLimit, Integer totalDonatedBeneficent, String pseudonym, Date bornDate, Address address) {
+        super(name, telephone, document, address);
         this.donationLimit = donationLimit;
         this.totalDonated = totalDonatedBeneficent;
         this.everDonated = true;
@@ -33,24 +36,13 @@ public class Beneficent extends User implements Serializable {
         this.address = address;
     }
 
-    public Beneficent(String name, Long telephone, String document, Integer donationLimit, String pseudonym, Instant bornDate, Address address) {
-        super(name, telephone, document);
+    public Beneficent(String name, Long telephone, String document, Integer donationLimit, String pseudonym, Date bornDate, Address address) {
+        super(name, telephone, document, address);
         this.donationLimit = donationLimit;
         this.totalDonated = 0;
         this.everDonated = false;
         this.pseudonym = pseudonym;
         this.bornDate = bornDate;
-        this.address = address;
-    }
-
-    @OneToOne
-    private Address address;
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
         this.address = address;
     }
 
@@ -70,11 +62,11 @@ public class Beneficent extends User implements Serializable {
         this.totalDonated = totalDonated;
     }
 
-    public Instant getBornDate() {
+    public Date getBornDate() {
         return bornDate;
     }
 
-    public void setBornDate(Instant bornDate) {
+    public void setBornDate(Date bornDate) {
         this.bornDate = bornDate;
     }
 
